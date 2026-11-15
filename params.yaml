@@ -1,0 +1,11 @@
+prepare:
+  id_column: application_id
+  event_timestamp: "2026-01-01"
+train:
+  model: logistic_regression
+  C: 1.0
+  class_weight: balanced
+  n_estimators: 200
+  max_depth: none
+  learning_rate: 0.1
+  random_state: 42
