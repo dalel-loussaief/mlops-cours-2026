@@ -63,7 +63,7 @@ stages:
     params:
       params.yaml:
         prepare:
-          id_column: application_id
+          id_column: request_id
           event_timestamp: '2026-01-01'
       dataset.yaml:
         features:
@@ -98,27 +98,27 @@ stages:
     outs:
     - path: data/processed/features.parquet
       hash: md5
-      md5: 926ad862e9d4706ac01d797345623458
-      size: 31146
+      md5: dfaeb7cc24dd1c60d10b530308c5bba9
+      size: 31110
     - path: data/processed/test.csv
       hash: md5
-      md5: 2dbdc727d0e866778ee1d82885741947
-      size: 28870
+      md5: 80c14461d82ef43b1897f9431f18922a
+      size: 28866
     - path: data/processed/train.csv
       hash: md5
-      md5: 54dfecdf3fc9ad3f2654f98097dad8c9
-      size: 114360
+      md5: 77f6be6148e414198654bf8ff4e12d13
+      size: 114356
   train:
     cmd: python -m src.train
     deps:
     - path: data/processed/test.csv
       hash: md5
-      md5: 2dbdc727d0e866778ee1d82885741947
-      size: 28870
+      md5: 80c14461d82ef43b1897f9431f18922a
+      size: 28866
     - path: data/processed/train.csv
       hash: md5
-      md5: 54dfecdf3fc9ad3f2654f98097dad8c9
-      size: 114360
+      md5: 77f6be6148e414198654bf8ff4e12d13
+      size: 114356
     - path: src/dataset_config.py
       hash: md5
       md5: 3dfbc7152adfcc892ce94654d08a25e0
@@ -131,7 +131,7 @@ stages:
       params.yaml:
         train:
           model: logistic_regression
-          C: 0.1
+          C: 1.0
           class_weight: balanced
           n_estimators: 200
           max_depth: none
@@ -147,7 +147,7 @@ stages:
     outs:
     - path: models/model
       hash: md5
-      md5: e744e8826f66555c72c397c96c1ea24a.dir
+      md5: 4bb4898d23f14465c194ee9dc4912aef.dir
       size: 282185
       nfiles: 5
   evaluate:
@@ -155,11 +155,11 @@ stages:
     deps:
     - path: data/processed/test.csv
       hash: md5
-      md5: 2dbdc727d0e866778ee1d82885741947
-      size: 28870
+      md5: 80c14461d82ef43b1897f9431f18922a
+      size: 28866
     - path: models/model
       hash: md5
-      md5: e744e8826f66555c72c397c96c1ea24a.dir
+      md5: 4bb4898d23f14465c194ee9dc4912aef.dir
       size: 282185
       nfiles: 5
     - path: src/evaluate.py
@@ -181,5 +181,5 @@ stages:
     outs:
     - path: reports/metrics.json
       hash: md5
-      md5: c48bc6c02758f5cd86709de5f74be221
-      size: 284
+      md5: 9e94455a6b4ea8000f4088d2767b5dd8
+      size: 286
