@@ -1,0 +1,20 @@
+{
+  "actions": [
+    {
+      "name": "data_docs",
+      "site_names": [],
+      "type": "update_data_docs"
+    }
+  ],
+  "id": "5d67bd8f-60fa-4868-b0b8-fd54e85981ae",
+  "name": "scoring_gate",
+  "result_format": {
+    "result_format": "SUMMARY"
+  },
+  "validation_definitions": [
+    {
+      "id": "2de06ce5-a776-4d62-9422-a2690df84632",
+      "name": "scoring_contract"
+    }
+  ]
+}
