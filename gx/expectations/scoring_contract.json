@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "80e431d6-e122-4fd4-81c6-a11167fe1fa1",
+      "id": "55c0639e-ce82-435e-b31c-fc3f2d138971",
       "kwargs": {
         "column_set": [
           "duration",
@@ -33,7 +33,7 @@
       "type": "expect_table_columns_to_match_set"
     },
     {
-      "id": "b27801fd-6b13-47b2-8380-a9e839111658",
+      "id": "c26aea82-bffb-4667-b51d-36d521d958f2",
       "kwargs": {
         "min_value": 80
       },
@@ -42,7 +42,7 @@
       "type": "expect_table_row_count_to_be_between"
     },
     {
-      "id": "5091378f-735b-4f58-84b1-bb515051a049",
+      "id": "967bd3c5-bd58-4418-b18c-8bfb787620d9",
       "kwargs": {
         "column": "duration"
       },
@@ -51,7 +51,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "5455b345-7070-4cfe-a69e-cfcb8543d682",
+      "id": "869dc10a-3c48-4146-b4d9-6c5f94ae2645",
       "kwargs": {
         "column": "duration",
         "type_list": [
@@ -68,7 +68,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "8200b391-5b67-4354-af99-411f2fd4972d",
+      "id": "91668b3e-d46c-4819-ba1b-1b84aa5b35d9",
       "kwargs": {
         "column": "credit_amount"
       },
@@ -77,7 +77,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "051c7c5d-4bbb-4de7-9da3-032285096754",
+      "id": "102b5b33-72c7-441e-9f70-7b95792e13f7",
       "kwargs": {
         "column": "credit_amount",
         "type_list": [
@@ -94,7 +94,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "48b8d771-6343-4ac7-8e87-0a4f6e39af5d",
+      "id": "a027ba3d-6967-487b-96a6-54ae1b8bfd30",
       "kwargs": {
         "column": "installment_commitment"
       },
@@ -103,7 +103,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "1f38fb4c-c5c9-4fc3-9462-a76dcda01425",
+      "id": "97fd731a-1cf4-4d28-a6c5-e980723908a9",
       "kwargs": {
         "column": "installment_commitment",
         "type_list": [
@@ -120,7 +120,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "587adfb6-3b4a-473b-a857-6c9cedb7414d",
+      "id": "f3811322-9e38-414b-b345-b1d476266ef5",
       "kwargs": {
         "column": "residence_since"
       },
@@ -129,7 +129,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "8ef70ac1-0b79-4b8d-8cc2-41d483a837bc",
+      "id": "52b2e9a8-054e-40a9-95df-e79667b2fae1",
       "kwargs": {
         "column": "residence_since",
         "type_list": [
@@ -146,7 +146,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "88dc91c1-1b09-4aaf-b7b1-02c0f109c43f",
+      "id": "326631ba-6674-4e7e-a09a-c0f13342238e",
       "kwargs": {
         "column": "age"
       },
@@ -155,7 +155,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "ac92d69f-a2e2-45dd-9018-f0890664770a",
+      "id": "4e8eae1b-f237-448a-a656-ca2f1cf780dd",
       "kwargs": {
         "column": "age",
         "type_list": [
@@ -172,7 +172,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "354bbd3b-5329-4cea-a45b-2c29daa56ec2",
+      "id": "9b384638-d886-4472-868f-1938fba3aa50",
       "kwargs": {
         "column": "existing_credits"
       },
@@ -181,7 +181,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "6d335ab5-5926-4652-bfc4-1f9eebce8b96",
+      "id": "b8be5f02-433c-452b-b354-c8e5894ed929",
       "kwargs": {
         "column": "existing_credits",
         "type_list": [
@@ -198,7 +198,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "f4db012a-2275-4d2e-b432-e25e11a6ad0f",
+      "id": "a9fb64f1-6ae5-4d9b-9278-fe38083b5e84",
       "kwargs": {
         "column": "num_dependents"
       },
@@ -207,7 +207,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "c524b268-3d11-4533-a764-6766e2e0426f",
+      "id": "0e0381d0-75de-49de-8456-02dab6a970a3",
       "kwargs": {
         "column": "num_dependents",
         "type_list": [
@@ -224,7 +224,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "2de9e310-dc22-45cf-87a6-e2ecc5a87e84",
+      "id": "c5ea1a97-0fd6-4884-ac2c-1900f925673c",
       "kwargs": {
         "column": "checking_status"
       },
@@ -233,7 +233,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "ec042059-904c-4170-97fb-97c8bbd69f40",
+      "id": "597d1463-94a9-4031-9a31-8d117b7831db",
       "kwargs": {
         "column": "checking_status",
         "type_list": [
@@ -248,7 +248,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "47e6d891-afc9-403b-8bf4-f2a94f5cb428",
+      "id": "e4ffa9de-e57a-4b55-b56a-c85c1e50ff2b",
       "kwargs": {
         "column": "credit_history"
       },
@@ -257,7 +257,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "2b2ea9e4-ef19-4947-a34a-afeb9d611f66",
+      "id": "ac485227-4141-4f79-be69-0f90ccb5f5f6",
       "kwargs": {
         "column": "credit_history",
         "type_list": [
@@ -272,7 +272,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "058138f3-da4c-4ed7-b26a-5bf1e9c3068a",
+      "id": "aa14feb6-4700-4fc8-bbd0-6a84e3ffb092",
       "kwargs": {
         "column": "purpose"
       },
@@ -281,7 +281,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "e5aae932-e96b-464d-ad0f-6e21f314e3fa",
+      "id": "0475e4ed-39cc-4940-8ae3-aec461687be4",
       "kwargs": {
         "column": "purpose",
         "type_list": [
@@ -296,7 +296,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "ff37e851-782d-47da-b3d8-440e22b26280",
+      "id": "b61a3186-e953-4d4c-93c8-87c67b591ca2",
       "kwargs": {
         "column": "savings_status"
       },
@@ -305,7 +305,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "0499cc59-b1d2-4590-b65b-b4baad8f4fbf",
+      "id": "ce012143-1dca-4903-8fd5-7803d7d59b40",
       "kwargs": {
         "column": "savings_status",
         "type_list": [
@@ -320,7 +320,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "f37b59e4-4e4f-4522-b67c-a45a8939f16d",
+      "id": "b8e9f9c0-28bf-48ad-a8e9-350582d77a3c",
       "kwargs": {
         "column": "employment"
       },
@@ -329,7 +329,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "3b12cb4b-070e-4689-8f78-578fc56e9eb9",
+      "id": "9df2b222-c79f-4488-a635-2ce1a559903e",
       "kwargs": {
         "column": "employment",
         "type_list": [
@@ -344,7 +344,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "8ee116a5-4eda-4113-a17b-9e10935380e1",
+      "id": "5a11fa79-4a30-48d7-ae33-91c093eed5f3",
       "kwargs": {
         "column": "personal_status"
       },
@@ -353,7 +353,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "02859787-ee86-49e3-996b-8c317659080c",
+      "id": "f34ae9e8-a65e-4787-a3a5-351b7c0f2c54",
       "kwargs": {
         "column": "personal_status",
         "type_list": [
@@ -368,7 +368,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "413fd955-dea1-4742-ab6e-ad1053270a79",
+      "id": "cb0d0345-dce0-400e-ab35-7bb37c60d985",
       "kwargs": {
         "column": "other_parties"
       },
@@ -377,7 +377,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "a8e9efa7-8f27-480c-b9b9-b045635f10b0",
+      "id": "21ad200a-3341-41f8-9083-712d4b7777c3",
       "kwargs": {
         "column": "other_parties",
         "type_list": [
@@ -392,7 +392,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "cc4d3775-7f95-400f-b4fa-f0d0c5faed17",
+      "id": "60a40e9a-bb2b-43e9-9886-7a5a9ce2156d",
       "kwargs": {
         "column": "property_magnitude"
       },
@@ -401,7 +401,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "cdeba513-d7f1-47f4-8334-ef8c34be8688",
+      "id": "5f45391c-370c-41a5-9dac-f8e47f0b742a",
       "kwargs": {
         "column": "property_magnitude",
         "type_list": [
@@ -416,7 +416,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "741e7ae0-9389-4f60-902c-e47a31d32d76",
+      "id": "ba3cd784-c31e-4635-a7f5-0cb14c63e55d",
       "kwargs": {
         "column": "other_payment_plans"
       },
@@ -425,7 +425,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "676cdf9a-47a3-4222-8c10-1748909364d8",
+      "id": "a74ef557-bde8-43ad-b0eb-acadf768dc35",
       "kwargs": {
         "column": "other_payment_plans",
         "type_list": [
@@ -440,7 +440,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "9ae05b3b-d7ed-428e-9f4b-95d85011480c",
+      "id": "b8f6ce2d-1d5b-49ec-9668-e907250667b2",
       "kwargs": {
         "column": "housing"
       },
@@ -449,7 +449,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "2b7fb9e7-5fbd-4970-929f-2a9859d74a43",
+      "id": "c6019dd6-6211-43d2-92a1-c79d454a4dec",
       "kwargs": {
         "column": "housing",
         "type_list": [
@@ -464,7 +464,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "0de56a49-83f8-4ecb-b244-ada3cc1c413a",
+      "id": "7cdf8759-9006-424e-8859-4ad133106d23",
       "kwargs": {
         "column": "job"
       },
@@ -473,7 +473,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "67e9a3b0-e6f2-45cb-84a2-26934991fcad",
+      "id": "4ca34770-8614-4ad8-817c-9510e96b3cdd",
       "kwargs": {
         "column": "job",
         "type_list": [
@@ -488,7 +488,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "b08a9fff-45af-4cd5-90c5-9129cd5d5a1b",
+      "id": "705c110f-33f3-4771-9673-26a8edb917c1",
       "kwargs": {
         "column": "own_telephone"
       },
@@ -497,7 +497,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "bfd7953e-21ac-4df9-be78-78a58c7da1ef",
+      "id": "4d7f4638-83e6-4fb1-84e3-832edc827610",
       "kwargs": {
         "column": "own_telephone",
         "type_list": [
@@ -512,7 +512,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "883a24f3-3e15-4ada-aded-052a5e5f0962",
+      "id": "f7099153-813e-4c9e-aa90-c74f02928d60",
       "kwargs": {
         "column": "foreign_worker"
       },
@@ -521,7 +521,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "685b2081-c374-4021-8943-d4944f4a4a69",
+      "id": "99c92f59-282d-4af2-aaf6-acaba09f662c",
       "kwargs": {
         "column": "foreign_worker",
         "type_list": [
@@ -536,7 +536,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "85bcba82-42a3-46d0-850e-3859b8881d3a",
+      "id": "a0c48577-8d7d-497f-915c-215e1cbfcbbd",
       "kwargs": {
         "column": "credit_risk"
       },
@@ -545,7 +545,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "86e2e725-1712-4cc5-a6e9-12d8b3e7b848",
+      "id": "9a07b9c5-2941-43bb-a8d8-c583ebcbc33d",
       "kwargs": {
         "column": "credit_risk",
         "type_list": [
@@ -560,7 +560,7 @@
       "type": "expect_column_values_to_be_in_type_list"
     },
     {
-      "id": "8dd01299-80a6-44e1-9607-42306616ed66",
+      "id": "3990e56d-1573-44ef-97be-e85382316195",
       "kwargs": {
         "column": "duration",
         "max_value": 116.0,
@@ -572,7 +572,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "cba5e3f9-849a-4e52-aa5f-113247b49ce5",
+      "id": "5d1cfd14-37a6-4676-92f7-c70b3ee7b209",
       "kwargs": {
         "column": "credit_amount",
         "max_value": 31614.0,
@@ -584,7 +584,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "901b64c1-abcd-452d-bde2-9aeaa422c7d8",
+      "id": "300e6963-4b50-403c-8a99-5e51e1d1df31",
       "kwargs": {
         "column": "installment_commitment",
         "max_value": 7.0,
@@ -596,7 +596,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "e3f24e3e-5c9d-4cb0-a3fe-23674d42188d",
+      "id": "a64bb14a-c07e-42e9-b1ce-08cef25934fc",
       "kwargs": {
         "column": "residence_since",
         "max_value": 7.0,
@@ -608,7 +608,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "e65fddb3-e3b3-4cd2-bd93-42cb20f01119",
+      "id": "4a42c7e3-ab69-4319-a4e5-29b02b17c290",
       "kwargs": {
         "column": "age",
         "max_value": 131.0,
@@ -620,7 +620,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "ee3f2015-721c-4e55-8b6c-44243f409c2a",
+      "id": "061fceec-2819-4943-a0c8-cfd7b597fbf5",
       "kwargs": {
         "column": "existing_credits",
         "max_value": 7.0,
@@ -632,7 +632,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "6efe7858-6983-4b9e-bb2b-ec9968652859",
+      "id": "08f3c90c-d686-4f7a-b2ef-a839f6f1dc05",
       "kwargs": {
         "column": "num_dependents",
         "max_value": 3.0,
@@ -644,7 +644,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "77beb20e-3e90-4259-b700-a3b9e4385b7d",
+      "id": "8e4ebc18-4dfc-4fce-baf2-86e833faef72",
       "kwargs": {
         "column": "checking_status",
         "mostly": 0.99,
@@ -660,7 +660,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "4aeceb10-36ed-407a-86c9-cd828f40bb49",
+      "id": "033dcd72-8c2d-482c-b3b9-8b006aacb9c4",
       "kwargs": {
         "column": "credit_history",
         "mostly": 0.99,
@@ -677,7 +677,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "45f76658-4d4b-4321-83aa-e4b288e10669",
+      "id": "8b90e565-d90a-49ac-b6c5-3e911dfb4de0",
       "kwargs": {
         "column": "purpose",
         "mostly": 0.99,
@@ -699,7 +699,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "92929775-1883-40aa-93fb-96603a050eef",
+      "id": "325711c8-f9f3-4753-b0b9-6e7f4bd68131",
       "kwargs": {
         "column": "savings_status",
         "mostly": 0.99,
@@ -716,7 +716,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "e8de7ad9-c797-4aff-be78-3ad95153c3f0",
+      "id": "3dc5ba13-adb8-4b53-87a1-c44a9340e12b",
       "kwargs": {
         "column": "employment",
         "mostly": 0.99,
@@ -733,7 +733,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "2e379ed5-5925-4871-b6cb-b6b0f1dbc2c6",
+      "id": "b7a5d007-0164-4a7c-a047-1b8782425a31",
       "kwargs": {
         "column": "personal_status",
         "mostly": 0.99,
@@ -749,7 +749,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "804eb34c-efe7-4528-a155-41fa9ed0b064",
+      "id": "50b364c2-0260-4826-a2c0-a5634259dd1c",
       "kwargs": {
         "column": "other_parties",
         "mostly": 0.99,
@@ -764,7 +764,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "b2ec1150-2ab6-4fb4-bd8b-97585c7005d8",
+      "id": "aaa2a048-d9bd-47e0-b45b-4deefa896c37",
       "kwargs": {
         "column": "property_magnitude",
         "mostly": 0.99,
@@ -780,7 +780,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "e5eaae08-c7c1-41d8-9616-07c19f8266a9",
+      "id": "d3c25cf9-26f2-4985-949e-cecd0f8b6f5a",
       "kwargs": {
         "column": "other_payment_plans",
         "mostly": 0.99,
@@ -795,7 +795,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "06b355c4-9872-43c0-b23c-f303319b1f23",
+      "id": "c52fc936-d928-4426-8788-651c8b849bcc",
       "kwargs": {
         "column": "housing",
         "mostly": 0.99,
@@ -810,7 +810,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "12aef126-25c7-4cc5-8d7f-a47ba3c906fd",
+      "id": "566d8f28-d748-486c-ac18-7e7b3bf6a5bd",
       "kwargs": {
         "column": "job",
         "mostly": 0.99,
@@ -826,7 +826,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "079ff9a3-b7b8-4cee-98d5-781322f11a60",
+      "id": "9e245a13-5313-4b14-afb3-509420ae74d3",
       "kwargs": {
         "column": "own_telephone",
         "mostly": 0.99,
@@ -840,7 +840,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "3d80c143-9044-4c91-b6ed-382a1421ef37",
+      "id": "318e0907-fa1b-4da4-a77b-efd2eee7a90b",
       "kwargs": {
         "column": "foreign_worker",
         "mostly": 0.99,
@@ -854,7 +854,7 @@
       "type": "expect_column_values_to_be_in_set"
     },
     {
-      "id": "1b2a56d2-0902-4a69-8aef-fe887d8cf11d",
+      "id": "07343b3b-6e3a-41cd-b2c3-619349e2fecb",
       "kwargs": {
         "column": "credit_risk",
         "value_set": [
@@ -868,7 +868,7 @@
     },
     {
       "description": "Au moins 15% de \u00ab bad \u00bb",
-      "id": "03744ce2-5dff-42d4-a322-448778503ffa",
+      "id": "5de83ea9-83dc-477a-83cf-9540c60be18e",
       "kwargs": {
         "column": "credit_risk",
         "mostly": 0.15,
@@ -882,7 +882,7 @@
     },
     {
       "description": "Au plus 60% de \u00ab bad \u00bb",
-      "id": "35935026-abe3-47b5-8680-b213f767c66d",
+      "id": "09a57efd-1523-4889-9940-c2c0a592c5e0",
       "kwargs": {
         "column": "credit_risk",
         "mostly": 0.4,

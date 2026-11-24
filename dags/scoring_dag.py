@@ -1,6 +1,6 @@
 # Fichier : dags/scoring_dag.py
 """DAG Airflow « scoring_dag » : la variante Airflow du pipeline KFP du Lab 2.
- 
+
 Même image (localhost:5001/scoring-pipeline), mêmes commandes que dvc.yaml et que les
 composants KFP : chaque task est un pod lancé dans le cluster kind par le
 KubernetesPodOperator. Différence clé avec KFP : Airflow ne transporte AUCUN fichier.
@@ -8,14 +8,14 @@ Chaque task recopie l'arborescence du projet depuis/vers un préfixe S3 propre a
 (pipelines/stage.py --workspace) ; seules de petites valeurs passent par XCom
 (identifiant du run MLflow, métriques).
 """
- 
+
 from datetime import UTC, datetime, timedelta
- 
+
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
 from airflow.sdk import DAG
 from kubernetes.client import models as k8s
- 
-IMAGE = "localhost:5001/scoring-pipeline:1.1.0"  # même tag que pipelines/components.py
+
+IMAGE = "localhost:5001/scoring-pipeline:1.2.0"  # même tag que pipelines/components.py
 WORKSPACE = "s3://airflow-data/scoring/{{ run_id }}"  # dossier de travail du run (S3)
 ENV = {
     "MLFLOW_TRACKING_URI": "http://mlflow.mlflow:5000",  # aucun identifiant S3 pour MLflow
@@ -24,8 +24,8 @@ ENV = {
     "AWS_DEFAULT_REGION": "us-east-1",
 }
 S3_CREDENTIALS = k8s.V1EnvFromSource(secret_ref=k8s.V1SecretEnvSource(name="s3-credentials"))
- 
- 
+
+
 def stage(task_id: str, module: str, *args: str, xcom=False, memory="1Gi", retries=0):
     """Une task = un pod qui exécute « python -m pipelines.stage <module> » (une stage DVC)."""
     return KubernetesPodOperator(
@@ -45,8 +45,8 @@ def stage(task_id: str, module: str, *args: str, xcom=False, memory="1Gi", retri
         get_logs=True,
         on_finish_action="delete_succeeded_pod",
     )
- 
- 
+
+
 with DAG(
     dag_id="scoring_dag",
     description="Credit scoring : ingest -> validate -> prepare -> train -> evaluate -> register",
@@ -67,5 +67,5 @@ with DAG(
         "--run-id",
         "{{ ti.xcom_pull(task_ids='train')['mlflow_run_id'] }}",
     )
- 
+
     ingest >> validate >> prepare >> train >> evaluate >> register

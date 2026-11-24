@@ -1,18 +1,18 @@
 # Fichier : pipelines/components.py
-"""Composants KFP du pipeline de scoring (Lab 2).
- 
+"""Composants KFP du pipeline de scoring (Labs 2 et 3).
+
 Chaque composant tourne dans l'image « projet » PIPELINE_IMAGE (pipelines/Dockerfile), qui
 contient le code du Lab 1. Un composant ne recopie AUCUNE logique métier : il relie ses
 artefacts typés (Dataset, Model, Metrics) aux fichiers d'une stage de dvc.yaml, puis lance
 la même commande que DVC (python -m src.<étape>) grâce à pipelines/stage.py.
- 
+
 Rappel KFP : seul le CODE de chaque fonction est envoyé au pod. Les imports se font donc
 DANS la fonction (ils sont résolus dans l'image) et aucune valeur par défaut d'un
 paramètre ne doit dépendre d'une constante de ce module.
 """
- 
+
 import os
- 
+
 from kfp import dsl
 from kfp.dsl import (
     HTML,
@@ -25,30 +25,30 @@ from kfp.dsl import (
     Model,
     Output,
 )
- 
+
 # Image construite et poussée à l'étape 2.4. Nouveau code dans l'image = nouveau tag.
 # Surcharge possible à la compilation : PIPELINE_IMAGE=… python -m pipelines.scoring_pipeline
-PIPELINE_IMAGE = os.getenv("PIPELINE_IMAGE", "localhost:5001/scoring-pipeline:1.1.0")
+PIPELINE_IMAGE = os.getenv("PIPELINE_IMAGE", "localhost:5001/scoring-pipeline:1.2.0")
 # Serveur MLflow du cours vu depuis un pod (DNS interne <service>.<namespace>)
 MLFLOW_URI = "http://mlflow.mlflow:5000"
- 
- 
+
+
 @dsl.component(base_image=PIPELINE_IMAGE, install_kfp_package=False)
 def ingest_data(raw_data: Output[Dataset]) -> None:
     """Stage « download » : python -m src.download produit le fichier brut."""
     import pandas as pd
- 
+
     from pipelines.stage import run_stage
     from src.dataset_config import load_config
     from src.train import file_md5
- 
+
     cfg = load_config()
     run_stage("src.download", outputs={cfg.raw_path: raw_data.path})
     raw_data.metadata["dataset"] = cfg.name
     raw_data.metadata["rows"] = len(pd.read_csv(raw_data.path))
     raw_data.metadata["md5"] = file_md5(raw_data.path)  # le même hash que dans dvc.lock
- 
- 
+
+
 @dsl.component(base_image=PIPELINE_IMAGE, install_kfp_package=False)
 def validate_data(
     raw_data: Input[Dataset],
@@ -73,8 +73,8 @@ def validate_data(
     summary = json.loads(Path(report.path).read_text())
     for name in ("n_checks", "n_failed", "rows", "positive_rate"):
         checks.log_metric(name, summary[name])
- 
- 
+
+
 @dsl.component(base_image=PIPELINE_IMAGE, install_kfp_package=False)
 def prepare_features(
     raw_data: Input[Dataset],
@@ -83,11 +83,11 @@ def prepare_features(
 ) -> None:
     """Stage « prepare » : python -m src.prepare (split stratifié décrit par dataset.yaml)."""
     import pandas as pd
- 
+
     from pipelines.stage import run_stage
     from src.dataset_config import load_config
     from src.train import TEST_CSV, TRAIN_CSV
- 
+
     cfg = load_config()
     run_stage(
         "src.prepare",
@@ -98,8 +98,44 @@ def prepare_features(
         y = cfg.encode_target(pd.read_csv(split.path)[cfg.target])
         split.metadata["rows"] = len(y)
         split.metadata["positive_rate"] = round(float(y.mean()), 4)
- 
- 
+
+
+@dsl.component(base_image=PIPELINE_IMAGE, install_kfp_package=False)
+def detect_drift(
+    reference_data: Input[Dataset],
+    current_data: Input[Dataset],
+    report: Output[Artifact],
+    table: Output[Markdown],
+    html: Output[HTML],
+    drift: Output[Metrics],
+    ks_alpha: float,
+    psi_threshold: float,
+    drift_share: float,
+    fail_on_drift: bool,
+) -> bool:
+    """Gate : python -m src.detect_drift ; renvoie True si les données courantes dérivent."""
+    import json
+    from pathlib import Path
+
+    from pipelines.stage import run_stage
+    from src.detect_drift import REPORT_HTML, REPORT_JSON, REPORT_MD
+
+    reference, current = "data/drift/reference.csv", "data/drift/current.csv"
+    run_stage(
+        "src.detect_drift",
+        args=[reference, current, "--ks-alpha", ks_alpha, "--psi-threshold", psi_threshold,
+              "--drift-share", drift_share, *([] if fail_on_drift else ["--no-fail"])],
+        inputs={reference: reference_data.path, current: current_data.path},
+        outputs={str(REPORT_JSON): report.path, str(REPORT_MD): table.path,
+                 str(REPORT_HTML): html.path},
+    )  # fmt: skip
+    summary = json.loads(Path(report.path).read_text())
+    for name in ("n_columns", "n_drifted", "share_drifted"):
+        drift.log_metric(name, summary[name])
+    drift.log_metric("evidently_drifted_columns", summary["evidently"]["drifted_columns"])
+    return bool(summary["drift_detected"])
+
+
 @dsl.component(base_image=PIPELINE_IMAGE, install_kfp_package=False)
 def train_model(
     raw_data: Input[Dataset],
@@ -119,11 +155,11 @@ def train_model(
     """Stage « train » : python -m src.train ; renvoie l'identifiant du run MLflow."""
     from mlflow import MlflowClient
     from mlflow.models import Model as MlflowModel
- 
+
     from pipelines.stage import run_stage
     from src.dataset_config import load_config
     from src.train import MODEL_DIR, TEST_CSV, TRAIN_CSV
- 
+
     cfg = load_config()
     run_stage(
         "src.train",
@@ -144,8 +180,8 @@ def train_model(
     model.metadata["model_type"] = model_type
     model.metadata["decision_threshold"] = round(metadata["decision_threshold"], 4)
     return run_id
- 
- 
+
+
 @dsl.component(base_image=PIPELINE_IMAGE, install_kfp_package=False)
 def evaluate_model(
     model: Input[Model],
@@ -159,15 +195,15 @@ def evaluate_model(
     """Stage « evaluate » : python -m src.evaluate ; métriques dans l'UI KFP et MLflow."""
     import json
     from pathlib import Path
- 
+
     import pandas as pd
     from mlflow import MlflowClient
- 
+
     from pipelines.stage import run_stage
     from src.dataset_config import load_config
     from src.evaluate import METRICS_JSON
     from src.train import MODEL_DIR, TEST_CSV
- 
+
     cfg = load_config()
     run_stage(
         "src.evaluate",
@@ -178,7 +214,7 @@ def evaluate_model(
     for name, value in results.items():
         if isinstance(value, int | float):
             metrics.log_metric(name, value)
- 
+
     # Matrice de confusion au seuil de décision, avec les libellés réels de la cible
     positive = str(cfg.positive_class)
     others = sorted(set(pd.read_csv(test_data.path)[cfg.target].astype(str)) - {positive})
@@ -188,16 +224,48 @@ def evaluate_model(
     # Le même rapport que reports/metrics.json de DVC, rangé avec le run MLflow
     MlflowClient(mlflow_uri).log_dict(run_id, results, str(METRICS_JSON))
     return float(results[cfg.primary_metric])
- 
- 
+
+
+@dsl.component(base_image=PIPELINE_IMAGE, install_kfp_package=False)
+def validate_model(
+    model: Input[Model],
+    train_data: Input[Dataset],
+    test_data: Input[Dataset],
+    report: Output[Artifact],
+    table: Output[Markdown],
+    html: Output[HTML],
+    checks: Output[Metrics],
+) -> None:
+    """Gate : python -m src.validate_model (Evidently + tests comportementaux pytest)."""
+    import json
+    from pathlib import Path
+
+    from pipelines.stage import run_stage
+    from src.dataset_config import load_config
+    from src.train import MODEL_DIR, TEST_CSV, TRAIN_CSV
+    from src.validate_model import REPORT_HTML, REPORT_JSON, REPORT_MD
+
+    cfg = load_config()
+    run_stage(
+        "src.validate_model",
+        inputs={str(MODEL_DIR): model.path, str(TRAIN_CSV): train_data.path,
+                str(TEST_CSV): test_data.path},
+        outputs={str(REPORT_JSON): report.path, str(REPORT_MD): table.path,
+                 str(REPORT_HTML): html.path},
+    )  # fmt: skip
+    summary = json.loads(Path(report.path).read_text())
+    for name in ("n_checks", "n_failed", cfg.primary_metric):
+        checks.log_metric(name, summary[name])
+
+
 @dsl.component(base_image=PIPELINE_IMAGE, install_kfp_package=False)
 def register_model(run_id: str, mlflow_uri: str) -> str:
     """python -m src.promote --run-id : @challenger toujours, @champion si métrique ≥ seuil."""
     from mlflow import MlflowClient
- 
+
     from pipelines.stage import run_stage
     from src.promote import MODEL_NAME
- 
+
     run_stage("src.promote", args=["--run-id", run_id], env={"MLFLOW_TRACKING_URI": mlflow_uri})
     versions = MlflowClient(mlflow_uri).search_model_versions(
         f"name = '{MODEL_NAME}' and run_id = '{run_id}'"
